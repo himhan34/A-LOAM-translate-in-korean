@@ -67,6 +67,7 @@ int main(int argc, char** argv)
     
     bool to_bag;
     n.getParam("to_bag", to_bag);  // bag 파일로 저장할지 여부를 파라미터에서 가져옴
+    
     if (to_bag)
         n.getParam("output_bag_file", output_bag_file);  // bag 파일 경로를 파라미터에서 가져옴
     
