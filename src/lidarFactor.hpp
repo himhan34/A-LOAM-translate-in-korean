@@ -65,7 +65,8 @@ struct LidarEdgeFactor // LidarEdgeFactor 구조체를 정의합니다.
 
 // 이번 기회에 ceres를 잘 사용하는 법에 대해서 제대로 배우면 좋을 것 같음. 
 // 어느정도 시간이 남았으니, 이걸 잘 활용하면 좋을 것 같음. 
-// https://github.com/LimHyungTae/helloceres => 한국 slam 학계에서, 가장 활발한 활동을 하시는 현재 mit에 계시는 박사님의 repo임.
+// https://github.com/JinyongJeong/helloceres?tab=readme-ov-file
+// motionai의 박사님이 강의 때 사용하신 ceres 사용법임. 
 // 어떻게 ceres를 사용하면 되는지, 잘 나와있음. 
 	static ceres::CostFunction *Create(const Eigen::Vector3d curr_point_, const Eigen::Vector3d last_point_a_,
 									   const Eigen::Vector3d last_point_b_, const double s_)
