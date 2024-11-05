@@ -34,20 +34,21 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#pragma once
+#pragma once  // 헤더 파일이 중복 포함되는 것을 방지
 
-#include <cmath>
+#include <cmath>  // 수학 관련 함수와 상수를 포함하는 헤더 파일
 
-#include <pcl/point_types.h>
+#include <pcl/point_types.h>  // PCL 라이브러리의 포인트 타입 정의를 포함하는 헤더 파일
 
-typedef pcl::PointXYZI PointType;
+typedef pcl::PointXYZI PointType;  // 포인트 타입을 pcl::PointXYZI로 정의
 
-inline double rad2deg(double radians)
+inline double rad2deg(double radians)  // 라디안(radian)을 도(degree)로 변환하는 함수
 {
-  return radians * 180.0 / M_PI;
+  return radians * 180.0 / M_PI;  // 라디안 값을 도로 변환하여 반환
 }
 
-inline double deg2rad(double degrees)
+inline double deg2rad(double degrees)  // 도(degree)를 라디안(radian)으로 변환하는 함수
 {
-  return degrees * M_PI / 180.0;
+  return degrees * M_PI / 180.0;  // 도 값을 라디안으로 변환하여 반환
 }
+
