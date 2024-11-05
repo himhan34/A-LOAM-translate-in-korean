@@ -1,26 +1,27 @@
-<launch>
-    
-    <param name="scan_line" type="int" value="16" />
+<launch>  <!-- Launch 파일의 시작 -->
 
-    <!-- if 1, do mapping 10 Hz, if 2, do mapping 5 Hz. Suggest to use 1, it will adjust frequence automaticlly -->
+    <param name="scan_line" type="int" value="16" />  <!-- 스캔 라인의 수를 16으로 설정 -->
+
+    <!-- 값이 1이면 매핑을 10Hz로 수행하고, 값이 2이면 매핑을 5Hz로 수행. 자동으로 주파수를 조정하므로 1을 권장 -->
     <param name="mapping_skip_frame" type="int" value="1" />
 
-    <!-- remove too closed points -->
+    <!-- 너무 가까운 포인트들을 제거 -->
     <param name="minimum_range" type="double" value="0.3"/>
 
-
+    <!-- 매핑 라인의 해상도 설정 -->
     <param name="mapping_line_resolution" type="double" value="0.2"/>
     <param name="mapping_plane_resolution" type="double" value="0.4"/>
 
-    <node pkg="aloam_velodyne" type="ascanRegistration" name="ascanRegistration" output="screen" />
+    <node pkg="aloam_velodyne" type="ascanRegistration" name="ascanRegistration" output="screen" />  <!-- aloam_velodyne 패키지의 ascanRegistration 노드를 실행 -->
 
-    <node pkg="aloam_velodyne" type="alaserOdometry" name="alaserOdometry" output="screen" />
+    <node pkg="aloam_velodyne" type="alaserOdometry" name="alaserOdometry" output="screen" />  <!-- aloam_velodyne 패키지의 alaserOdometry 노드를 실행 -->
 
-    <node pkg="aloam_velodyne" type="alaserMapping" name="alaserMapping" output="screen" />
+    <node pkg="aloam_velodyne" type="alaserMapping" name="alaserMapping" output="screen" />  <!-- aloam_velodyne 패키지의 alaserMapping 노드를 실행 -->
 
-    <arg name="rviz" default="true" />
-    <group if="$(arg rviz)">
-        <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find aloam_velodyne)/rviz_cfg/aloam_velodyne.rviz" />
+    <arg name="rviz" default="true" />  <!-- RViz 실행 여부를 제어하는 인수, 기본값은 true -->
+
+    <group if="$(arg rviz)">  <!-- RViz가 실행되도록 설정된 경우 -->
+        <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find aloam_velodyne)/rviz_cfg/aloam_velodyne.rviz" />  <!-- aloam_velodyne 패키지의 RViz 설정 파일을 사용하여 RViz 노드를 실행 -->
     </group>
 
-</launch>
+</launch>  <!-- Launch 파일의 끝 -->
