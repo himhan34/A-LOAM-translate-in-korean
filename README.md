@@ -62,3 +62,12 @@ The build process may take a while depends on your machine. After that, run `./r
 ## 6.Acknowledgements
 Thanks for LOAM(J. Zhang and S. Singh. LOAM: Lidar Odometry and Mapping in Real-time) and [LOAM_NOTED](https://github.com/cuitaixiang/LOAM_NOTED).
 
+## 7.Acknowledgements
+this package can be used in ros noetic with ubuntu 20.04, you can use this site for seeing.
+https://blog.csdn.net/2301_76920231/article/details/132110968
+
+
+
+
+
+
