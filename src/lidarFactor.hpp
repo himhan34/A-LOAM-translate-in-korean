@@ -37,9 +37,11 @@ struct LidarEdgeFactor // LidarEdgeFactor 구조체를 정의합니다.
 
 		q_last_curr = q_identity.slerp(T(s), q_last_curr);
 		// slerp를 사용하여 보간된 쿼터니언을 생성합니다.
+		// 이거 궁금한 게, 왜 쿼터니언을 보간하는 것인가. 
 
 		Eigen::Matrix<T, 3, 1> t_last_curr{T(s) * t[0], T(s) * t[1], T(s) * t[2]};
 		// 스케일 s를 곱하여 변환 벡터 t_last_curr을 생성합니다.
+		// 이것도 궁금한게 변환하는 이유가 스케일을 맞추기 위해서라고 보면 되는 건가... 
 
 		Eigen::Matrix<T, 3, 1> lp;
 		lp = q_last_curr * cp + t_last_curr;
@@ -60,6 +62,11 @@ struct LidarEdgeFactor // LidarEdgeFactor 구조체를 정의합니다.
 		// 연산이 성공적으로 완료되었음을 반환합니다.
 	}
 
+
+// 이번 기회에 ceres를 잘 사용하는 법에 대해서 제대로 배우면 좋을 것 같음. 
+// 어느정도 시간이 남았으니, 이걸 잘 활용하면 좋을 것 같음. 
+// https://github.com/LimHyungTae/helloceres => 한국 slam 학계에서, 가장 활발한 활동을 하시는 현재 mit에 계시는 박사님의 repo임.
+// 어떻게 ceres를 사용하면 되는지, 잘 나와있음. 
 	static ceres::CostFunction *Create(const Eigen::Vector3d curr_point_, const Eigen::Vector3d last_point_a_,
 									   const Eigen::Vector3d last_point_b_, const double s_)
 	{
@@ -152,6 +159,7 @@ struct LidarPlaneNormFactor
 	bool operator()(const T *q, const T *t, T *residual) const
 	{
 		// 쿼터니언으로 회전 변환을 수행하기 위해 현재 회전 q를 Eigen 쿼터니언으로 변환
+		// 매번 코드를 볼 때, 궁금한 거는 왜 쿼터니언의 순서가 3 0 1 2
 		Eigen::Quaternion<T> q_w_curr{q[3], q[0], q[1], q[2]};
 		
 		// 현재 위치 변환 t를 Eigen 벡터로 변환
@@ -234,4 +242,4 @@ struct LidarDistanceFactor
 	// 가장 가까운 점의 좌표
 	Eigen::Vector3d closed_point;
 };
-4
+
